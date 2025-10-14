@@ -19,7 +19,7 @@ def generate_book_style_pdf():
     # 配置文件路径
     JSON_PATH = "biography_data.json"
     TEMPLATE_PATH = "templates/biography_book_style_v3.html"
-    OUTPUT_PDF_PATH = "output/顾火良回忆录_Book风格_v3_封底修复=2版.pdf"
+    OUTPUT_PDF_PATH = "output/顾火良回忆录_Book风格_v3_文字页页码3版.pdf"
     
     # 创建输出目录
     output_dir = Path("output")

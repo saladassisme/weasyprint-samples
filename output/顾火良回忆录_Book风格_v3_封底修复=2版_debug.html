@@ -65,6 +65,46 @@
             size: 140mm 210mm;
         }
 
+        @page chapter-image {
+            @bottom-right { content: none; }
+            @bottom-left { content: none; }
+            margin: 0;
+            size: 140mm 210mm;
+        }
+
+        @page chapter-image :left {
+            @bottom-right { content: none; }
+            @bottom-left { content: none; }
+            margin: 0;
+            size: 140mm 210mm;
+        }
+
+        @page chapter-content {
+            @bottom-right { 
+                content: counter(page);
+                font-size: 10pt;
+            }
+            @bottom-left { 
+                content: string(heading);
+                font-size: 10pt;
+            }
+            margin: 1.5cm 2cm 2cm 2cm;
+            size: 140mm 210mm;
+        }
+
+        @page chapter-content :right {
+            @bottom-right { 
+                content: counter(page);
+                font-size: 10pt;
+            }
+            @bottom-left { 
+                content: string(heading);
+                font-size: 10pt;
+            }
+            margin: 1.5cm 2cm 2cm 2cm;
+            size: 140mm 210mm;
+        }
+
         /* 基础样式 */
         html {
             counter-reset: h2-counter;
@@ -210,10 +250,68 @@
             color: #666;
         }
         
+        /* 封底样式 */
+        .back-cover {
+            page: back-cover;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #666;
+        }
+        
         .back-cover-content {
             font-family: "STKaiti", "KaiTi", "楷体", serif;
             font-size: 1.2em;
             opacity: 0.7;
+        }
+        
+        /* 章节左右分页布局 */
+        .chapter-image-page {
+            page: chapter-image;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            break-before: right; /* 强制分页到右页（偶数页） */
+        }
+        
+        .chapter-image-page img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        
+        .chapter-content-page {
+            page: chapter-content;
+            padding: 0cm;
+            break-before: right; /* 强制分页到右页（奇数页） */
+        }
+        
+        .chapter-qr {
+            text-align: center;
+            margin: 1cm 0 2cm 0;
+        }
+        
+        .chapter-qr img {
+            max-width: 2cm;
+            max-height: 2cm;
+            border-radius: 4px;
+        }
+        
+        .chapter-qr-label {
+            font-size: 9pt;
+            color: #666;
+            margin-top: 0.2cm;
+            font-family: "Microsoft YaHei", sans-serif;
         }
         
         /* 作者信息页 */
@@ -354,8 +452,24 @@
     
     <!-- 各章节内容 -->
     
-    <section id="chapter-1" class="chapter chapter-1">
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        
+        <img src="placeholder_chapter_1.jpg" alt="贫瘠土地上的童年与少年 (1948-1967)配图">
+        
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-1" class="chapter chapter-1 chapter-content-page">
         <h2 id="chapter-1-title">贫瘠土地上的童年与少年 (1948-1967)</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="placeholder_qr_1.jpg" alt="贫瘠土地上的童年与少年 (1948-1967)二维码">
+            
+            <div class="chapter-qr-label">扫码阅读更多</div>
+        </div>
         
         
         <p>我的故事，开始于1948年5月。那是一个春末夏初的季节，我出生在松江华阳桥的长楼村，七家浜生产队。我的家，就像那个年代大多数农村家庭一样，被贫穷的阴影笼罩着。</p>
@@ -416,8 +530,24 @@
         
     </section>
     
-    <section id="chapter-2" class="chapter chapter-2">
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        
+        <img src="placeholder_chapter_2.jpg" alt="命运的转折：从田埂走向讲台 (1967-1976)配图">
+        
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-2" class="chapter chapter-2 chapter-content-page">
         <h2 id="chapter-2-title">命运的转折：从田埂走向讲台 (1967-1976)</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="placeholder_qr_2.jpg" alt="命运的转折：从田埂走向讲台 (1967-1976)二维码">
+            
+            <div class="chapter-qr-label">扫码阅读更多</div>
+        </div>
         
         
         <p>生活似乎在一点点地向我展露微笑。我们生产队有一所耕读小学，教书的老师是一位女同志，她因为要经常回男家，便时常叫我去代课。</p>
@@ -436,8 +566,24 @@
         
     </section>
     
-    <section id="chapter-3" class="chapter chapter-3">
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        
+        <img src="placeholder_chapter_3.jpg" alt="为家奔波与安居的喜悦 (1976-1995)配图">
+        
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-3" class="chapter chapter-3 chapter-content-page">
         <h2 id="chapter-3-title">为家奔波与安居的喜悦 (1976-1995)</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="placeholder_qr_3.jpg" alt="为家奔波与安居的喜悦 (1976-1995)二维码">
+            
+            <div class="chapter-qr-label">扫码阅读更多</div>
+        </div>
         
         
         <p>1976年，我和妻子结婚了。婚后，我们住在生产队分配的两间破旧的小屋里，那是用泥土筑成的房子，一到雨天就漏水。</p>
@@ -448,8 +594,24 @@
         
     </section>
     
-    <section id="chapter-4" class="chapter chapter-4">
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        
+        <img src="placeholder_chapter_4.jpg" alt="食堂烟火里的十八年 (1991-2008)配图">
+        
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-4" class="chapter chapter-4 chapter-content-page">
         <h2 id="chapter-4-title">食堂烟火里的十八年 (1991-2008)</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="placeholder_qr_4.jpg" alt="食堂烟火里的十八年 (1991-2008)二维码">
+            
+            <div class="chapter-qr-label">扫码阅读更多</div>
+        </div>
         
         
         <p>1991年，因为学校需要，我被调去管理学校食堂。从讲台走向灶台，这个转变对我来说并不容易。</p>
@@ -460,8 +622,24 @@
         
     </section>
     
-    <section id="chapter-5" class="chapter chapter-5">
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        
+        <img src="placeholder_chapter_5.jpg" alt="天伦之乐与手足情深 (1995-2021)配图">
+        
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-5" class="chapter chapter-5 chapter-content-page">
         <h2 id="chapter-5-title">天伦之乐与手足情深 (1995-2021)</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="placeholder_qr_5.jpg" alt="天伦之乐与手足情深 (1995-2021)二维码">
+            
+            <div class="chapter-qr-label">扫码阅读更多</div>
+        </div>
         
         
         <p>随着孩子们长大成人，我和妻子的生活逐渐安定下来。孙辈的出生，更是给我们的生活带来了无尽的欢乐。</p>
@@ -472,8 +650,24 @@
         
     </section>
     
-    <section id="chapter-6" class="chapter chapter-6">
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        
+        <img src="placeholder_chapter_6.jpg" alt="暮年的考验与生命的坚韧 (2021-至今)配图">
+        
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-6" class="chapter chapter-6 chapter-content-page">
         <h2 id="chapter-6-title">暮年的考验与生命的坚韧 (2021-至今)</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="placeholder_qr_6.jpg" alt="暮年的考验与生命的坚韧 (2021-至今)二维码">
+            
+            <div class="chapter-qr-label">扫码阅读更多</div>
+        </div>
         
         
         <p>2021年，一场突如其来的疾病打破了我平静的晚年生活。医生说我得了脑梗，需要长期治疗和康复。</p>

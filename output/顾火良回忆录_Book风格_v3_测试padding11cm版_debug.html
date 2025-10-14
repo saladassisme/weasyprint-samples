@@ -7,7 +7,7 @@
     <style>
         /* 自定义页面尺寸和样式 */
         @page {
-            margin: 2cm 2cm 2cm 2cm;
+            margin: 1.5cm 2cm 2cm 2cm;
             size: 140mm 210mm;
         }
 
@@ -59,7 +59,7 @@
         @page back-cover {
             @bottom-right { content: none; }
             @bottom-left { content: none; }
-            background: url('file:///C:/Users/xutin/Desktop/小工具/weasyprint-samples/封底.jpg') no-repeat center center;
+            background: url('file:///C:/Users/xutin/Desktop/小工具/weasyprint-samples/back_cover.jpg') no-repeat center center;
             background-size: cover;
             margin: 0;
             size: 140mm 210mm;
@@ -69,16 +69,18 @@
             @bottom-left { 
                 content: counter(page);
                 font-size: 10pt;
-                color: black;
-                text-shadow: none;
+                color: white;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
             }
             @bottom-right { 
                 content: string(heading);
                 font-size: 10pt;
-                color: black;
-                text-shadow: none;
+                color: white;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
             }
-            margin: 2cm 2cm 2cm 2cm;
+            background: url('file:///C:/Users/xutin/Desktop/小工具/weasyprint-samples/back_cover.jpg') no-repeat center center;
+            background-size: cover;
+            margin: 2cm;
             size: 140mm 210mm;
         }
 
@@ -86,16 +88,18 @@
             @bottom-right { 
                 content: counter(page);
                 font-size: 10pt;
-                color: black;
-                text-shadow: none;
+                color: white;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
             }
             @bottom-left { 
                 content: string(heading);
                 font-size: 10pt;
-                color: black;
-                text-shadow: none;
+                color: white;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
             }
-            margin: 2cm 2cm 2cm 2cm;
+            background: url('file:///C:/Users/xutin/Desktop/小工具/weasyprint-samples/back_cover.jpg') no-repeat center center;
+            background-size: cover;
+            margin: 2cm;
             size: 140mm 210mm;
         }
 
@@ -108,7 +112,7 @@
                 content: string(heading);
                 font-size: 10pt;
             }
-            margin: 2cm 2cm 2cm 2cm;
+            margin: 1.5cm 2cm 2cm 2cm;
             size: 140mm 210mm;
         }
 
@@ -121,7 +125,7 @@
                 content: string(heading);
                 font-size: 10pt;
             }
-            margin: 2cm 2cm 2cm 2cm;
+            margin: 1.5cm 2cm 2cm 2cm;
             size: 140mm 210mm;
         }
 
@@ -203,7 +207,7 @@
             height: 60mm; /* 减小高度 */
             left: -20mm;
             position: absolute;
-            top: -2cm; /* 向上偏移页面边距，使背景装饰真正吸顶 */
+            top: -1.5cm; /* 向上偏移页面边距，使背景装饰真正吸顶 */
             width: 180mm;
             z-index: -1;
             opacity: 0.9;
@@ -308,20 +312,13 @@
             width: 100%;
             height: 100%;
             margin: 0;
-            padding: 0;
+            padding: -2cm;
             display: flex;
             justify-content: center;
             align-items: center;
             break-before: left; /* 强制分页到左页（偶数页） */
             page-break-before: left;
             /* 如果前一页是偶数页，会自动插入空白页 */
-        }
-        
-        .chapter-image {
-            width: 10cm;
-            height: auto;
-            object-fit: contain;
-            display: block;
         }
         
         .chapter-image-page img {
@@ -406,10 +403,9 @@
         }
         
         .contents a::after {
-            content: " " attr(data-page);
+            content: target-counter(attr(href), page);
             float: right;
             color: #666;
-            font-weight: normal;
         }
         
         /* 荣誉证书部分 - 已移除 */
@@ -478,17 +474,17 @@
         <h3>目录</h3>
         <ul>
             
-            <li><a href="#chapter-1-title" data-page="4">第一篇 贫瘠土地上的童年与少年 (1948-1967)</a></li>
+            <li><a href="#chapter-1-title">第一篇 贫瘠土地上的童年与少年 (1948-1967)</a></li>
             
-            <li><a href="#chapter-2-title" data-page="6">第二篇 命运的转折：从田埂走向讲台 (1967-1976)</a></li>
+            <li><a href="#chapter-2-title">第二篇 命运的转折：从田埂走向讲台 (1967-1976)</a></li>
             
-            <li><a href="#chapter-3-title" data-page="8">第三篇 为家奔波与安居的喜悦 (1976-1995)</a></li>
+            <li><a href="#chapter-3-title">第三篇 为家奔波与安居的喜悦 (1976-1995)</a></li>
             
-            <li><a href="#chapter-4-title" data-page="10">第四篇 食堂烟火里的十八年 (1991-2008)</a></li>
+            <li><a href="#chapter-4-title">第四篇 食堂烟火里的十八年 (1991-2008)</a></li>
             
-            <li><a href="#chapter-5-title" data-page="12">第五篇 天伦之乐与手足情深 (1995-2021)</a></li>
+            <li><a href="#chapter-5-title">第五篇 天伦之乐与手足情深 (1995-2021)</a></li>
             
-            <li><a href="#chapter-6-title" data-page="14">第六篇 暮年的考验与生命的坚韧 (2021-至今)</a></li>
+            <li><a href="#chapter-6-title">第六篇 暮年的考验与生命的坚韧 (2021-至今)</a></li>
             
         </ul>
     </section>
@@ -497,7 +493,7 @@
     
     <!-- 章节图片页（偶数页，翻开后的左页） -->
     <section class="chapter-image-page">
-        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+        <!-- 背景图通过CSS设置，无需img元素 -->
     </section>
     
     <!-- 章节内容页（奇数页，翻开后的右页） -->
@@ -573,7 +569,7 @@
     
     <!-- 章节图片页（偶数页，翻开后的左页） -->
     <section class="chapter-image-page">
-        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+        <!-- 背景图通过CSS设置，无需img元素 -->
     </section>
     
     <!-- 章节内容页（奇数页，翻开后的右页） -->
@@ -607,7 +603,7 @@
     
     <!-- 章节图片页（偶数页，翻开后的左页） -->
     <section class="chapter-image-page">
-        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+        <!-- 背景图通过CSS设置，无需img元素 -->
     </section>
     
     <!-- 章节内容页（奇数页，翻开后的右页） -->
@@ -633,7 +629,7 @@
     
     <!-- 章节图片页（偶数页，翻开后的左页） -->
     <section class="chapter-image-page">
-        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+        <!-- 背景图通过CSS设置，无需img元素 -->
     </section>
     
     <!-- 章节内容页（奇数页，翻开后的右页） -->
@@ -659,7 +655,7 @@
     
     <!-- 章节图片页（偶数页，翻开后的左页） -->
     <section class="chapter-image-page">
-        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+        <!-- 背景图通过CSS设置，无需img元素 -->
     </section>
     
     <!-- 章节内容页（奇数页，翻开后的右页） -->
@@ -685,7 +681,7 @@
     
     <!-- 章节图片页（偶数页，翻开后的左页） -->
     <section class="chapter-image-page">
-        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+        <!-- 背景图通过CSS设置，无需img元素 -->
     </section>
     
     <!-- 章节内容页（奇数页，翻开后的右页） -->
