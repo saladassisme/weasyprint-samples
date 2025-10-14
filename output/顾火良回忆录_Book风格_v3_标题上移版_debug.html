@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="顾火良">
+    <title>顾火良回忆录</title>
+    <style>
+        /* 自定义页面尺寸和样式 */
+        @page {
+            margin: 1.5cm 2cm 2cm 2cm;
+            size: 140mm 210mm;
+        }
+
+        @page :left {
+            @bottom-left {
+                content: counter(page);
+                position: absolute;
+                z-index: -1;
+                font-size: 10pt;
+            }
+            @bottom-right {
+                content: string(heading);
+                position: absolute;
+                z-index: -1;
+                font-size: 10pt;
+            }
+        }
+
+        @page :right {
+            @bottom-left {
+                content: string(heading);
+                position: absolute;
+                z-index: -1;
+                font-size: 10pt;
+            }
+            @bottom-right {
+                content: counter(page);
+                position: absolute;
+                z-index: -1;
+                font-size: 10pt;
+            }
+        }
+
+        @page full {
+            @bottom-right { content: none; }
+            @bottom-left { content: none; }
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            margin: 0;
+            size: 140mm 210mm;
+        }
+
+        @page clean {
+            @bottom-right { content: none; }
+            @bottom-left { content: none; }
+            size: 140mm 210mm;
+        }
+
+        /* 基础样式 */
+        html {
+            counter-reset: h2-counter;
+            font-family: "Microsoft YaHei", "SimSun", serif;
+            font-size: 12pt; /* 增大基础字号 */
+        }
+        
+        body {
+            margin: 0;
+            color: #333;
+        }
+        
+        /* 段落样式 */
+        p {
+            line-height: 1.8;
+            text-align: justify;
+            text-indent: 2em;
+            margin: 1em 0;
+            font-size: 14pt; /* 增大正文字号从12pt到14pt */
+        }
+        
+        /* 标题样式 */
+        h1 {
+            position: absolute;
+            visibility: hidden;
+        }
+        
+        h2 {
+            color: white;
+            counter-increment: h2-counter;
+            display: flex;
+            flex-direction: column;
+            font-family: "Microsoft YaHei", "SimSun", serif;
+            font-size: 2.2em; /* 增大章节标题字号 */
+            height: 4cm; /* 减小高度 */
+            justify-content: flex-start; /* 改为顶部对齐，让标题更靠近顶部 */
+            margin: 0;
+            padding-top: 0.3cm; /* 减少顶部间距 */
+            padding-bottom: 0.5cm; /* 增加底部间距 */
+            string-set: heading content();
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        h2::before {
+            content: "第" counter(h2-counter, cjk-ideographic) "篇 ";
+            display: block;
+            font-size: 0.8em;
+            font-weight: normal;
+            line-height: 1;
+        }
+        
+        h3 {
+            font-size: 1.8em;
+            text-align: center;
+            margin: 1.5em 0;
+            color: #333;
+        }
+        
+        /* 章节样式 */
+        section {
+            break-after: right;
+        }
+        
+        .chapter {
+            break-after: right;
+            position: relative;
+            padding-top: 0cm; /* 减少顶部间距，让背景装饰吸顶 */
+        }
+        
+        .chapter::before {
+            background: center / cover;
+            border-radius: 0 0 50% 50% / 0 0 15mm 15mm;
+            content: "";
+            display: block;
+            height: 60mm; /* 减小高度 */
+            left: -20mm;
+            position: absolute;
+            top: -1.5cm; /* 向上偏移页面边距，使背景装饰真正吸顶 */
+            width: 180mm;
+            z-index: -1;
+            opacity: 0.9;
+        }
+        
+        /* 为不同章节设置不同的背景色 */
+        .chapter-1::before { background-color: #e74c3c; }
+        .chapter-2::before { background-color: #3498db; }
+        .chapter-3::before { background-color: #2ecc71; }
+        .chapter-4::before { background-color: #f39c12; }
+        .chapter-5::before { background-color: #9b59b6; }
+        .chapter-6::before { background-color: #1abc9c; }
+        
+        /* 封面样式 */
+        .cover-page {
+            page: full;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2cm;
+        }
+        
+        .cover-title {
+            font-size: 2.8em; /* 增大封面标题字号 */
+            font-weight: bold;
+            margin-bottom: 1em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .cover-subtitle {
+            font-size: 1.4em;
+            margin-bottom: 2em;
+            opacity: 0.9;
+        }
+        
+        .cover-author {
+            font-size: 1.6em;
+            margin-bottom: 1em;
+        }
+        
+        .cover-compiler {
+            font-size: 1.1em;
+            margin-bottom: 3em;
+            opacity: 0.8;
+        }
+        
+        .cover-contact {
+            font-size: 1em;
+            opacity: 0.7;
+        }
+        
+        /* 作者信息页 */
+        .author-info {
+            page: clean;
+            text-align: center;
+            padding: 2cm 1cm; /* 减少左右边距从1.5cm到1cm */
+        }
+        
+        .author-info h3 {
+            font-size: 1.8em;
+            margin-bottom: 1.5em;
+            color: #333;
+        }
+        
+        .author-info p {
+            font-size: 13pt; /* 增大作者信息字号 */
+            line-height: 1.6;
+            text-indent: 0;
+            margin: 1em 0;
+            color: #555;
+        }
+        
+        /* 目录样式 */
+        .contents {
+            page: clean;
+            padding: 1.5cm 1cm; /* 减少左右边距从1.5cm到1cm */
+        }
+        
+        .contents h3 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 1.5em;
+            color: #333;
+        }
+        
+        .contents ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .contents li {
+            margin: 1.2em 0;
+            font-size: 13pt; /* 增大目录字号 */
+        }
+        
+        .contents a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 0.3em 0;
+        }
+        
+        .contents a::after {
+            content: target-counter(attr(href), page);
+            float: right;
+            color: #666;
+        }
+        
+        /* 荣誉证书部分 - 已移除 */
+        
+        /* 版权信息 */
+        .copyright {
+            page: clean;
+            text-align: center;
+            padding: 2cm 1.5cm;
+            color: #666;
+        }
+        
+        .copyright p {
+            font-size: 11pt;
+            text-indent: 0;
+            margin: 1em 0;
+        }
+        
+        /* 图片样式 */
+        img {
+            display: block;
+            margin: 1.5em auto;
+            max-width: 80%;
+        }
+        
+        aside {
+            display: flex;
+            justify-content: center;
+        }
+        
+        aside figure {
+            flex: none;
+            margin: 0;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        aside img {
+            border: 0.4mm solid white;
+            border-radius: 50%;
+            margin: 0 auto;
+            max-width: 14mm;
+        }
+    </style>
+</head>
+<body>
+    <h1>顾火良回忆录</h1>
+    
+    <!-- 封面页 -->
+    <section class="cover-page">
+        <div class="cover-title">顾火良回忆录</div>
+        <div class="cover-subtitle">回忆录</div>
+        <div class="cover-author">顾火良</div>
+        <div class="cover-compiler">小鹿光年回忆录 整理</div>
+        <div class="cover-contact">
+            <p>deerlight_ai@163.com</p>
+            <p>15301635715</p>
+        </div>
+    </section>
+    
+    <!-- 作者信息页 -->
+    <section class="author-info">
+        <h3>关于作者</h3>
+        <p>顾火良，生于1948年5月，松江华阳桥长楼村人。</p>
+        <p>一生从事教育工作，从民办教师到食堂管理，见证了时代变迁。</p>
+        <p>虽历经坎坷，但始终保持乐观坚韧的人生态度。</p>
+        <p>本书记录了他从童年到暮年的人生历程，展现了一个普通人的不凡人生。</p>
+    </section>
+    
+    <!-- 目录页 -->
+    <section class="contents">
+        <h3>目录</h3>
+        <ul>
+            
+            <li><a href="#chapter-1-title">第一篇 贫瘠土地上的童年与少年 (1948-1967)</a></li>
+            
+            <li><a href="#chapter-2-title">第二篇 命运的转折：从田埂走向讲台 (1967-1976)</a></li>
+            
+            <li><a href="#chapter-3-title">第三篇 为家奔波与安居的喜悦 (1976-1995)</a></li>
+            
+            <li><a href="#chapter-4-title">第四篇 食堂烟火里的十八年 (1991-2008)</a></li>
+            
+            <li><a href="#chapter-5-title">第五篇 天伦之乐与手足情深 (1995-2021)</a></li>
+            
+            <li><a href="#chapter-6-title">第六篇 暮年的考验与生命的坚韧 (2021-至今)</a></li>
+            
+        </ul>
+    </section>
+    
+    <!-- 各章节内容 -->
+    
+    <section id="chapter-1" class="chapter chapter-1">
+        <h2 id="chapter-1-title">贫瘠土地上的童年与少年 (1948-1967)</h2>
+        
+        
+        <p>我的故事，开始于1948年5月。那是一个春末夏初的季节，我出生在松江华阳桥的长楼村，七家浜生产队。我的家，就像那个年代大多数农村家庭一样，被贫穷的阴影笼罩着。</p>
+        
+        <p>父母一共养育了我们七个兄妹，在那个物质极度匮乏的年代，仅靠父母在生产队挣的工分，要养活一大家子人，其艰难程度可想而知。</p>
+        
+        <p>因为穷，我错过了正常的入学年龄。直到1958年，我已经十岁了，才第一次踏进学校的大门。那时的我，看着比我小两三岁的同学，心里既羡慕又自卑。</p>
+        
+        <p>记得第一次走进教室的时候，我穿着补丁摞补丁的衣服，脚上是一双破旧的布鞋。同学们都用好奇的眼光看着我，有的甚至窃窃私语。我知道他们在议论什么，但我只能默默地走到最后一排，坐在那个最角落的位置。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>从那时起，我下定决心要好好学习。每天天不亮就起床，借着微弱的煤油灯光读书写字。虽然条件艰苦，但我从未放弃过。我知道，只有通过知识，才能改变我们家的命运。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        
+        
+    </section>
+    
+    <section id="chapter-2" class="chapter chapter-2">
+        <h2 id="chapter-2-title">命运的转折：从田埂走向讲台 (1967-1976)</h2>
+        
+        
+        <p>生活似乎在一点点地向我展露微笑。我们生产队有一所耕读小学，教书的老师是一位女同志，她因为要经常回男家，便时常叫我去代课。</p>
+        
+        <p>1972年，国家进行教育政策调整，有了"公专公调"的规定。然而，因为我所在的耕读学校性质特殊，并没有被转为公办学校，我的身份也由此定格为一名"民办教师"。</p>
+        
+        <p>虽然只是民办教师，但我依然热爱这份工作。每天清晨，我都会早早地来到学校，打扫教室，准备教案。看着孩子们一张张纯真的笑脸，听着他们朗朗的读书声，我觉得这就是我人生最大的幸福。</p>
+        
+        <p>在那个年代，民办教师的待遇并不好，每个月只有几块钱的工资，还要自己种地维持生计。但我从未抱怨过，因为我知道，教育是改变命运的唯一途径。</p>
+        
+        <p>我教过的学生中，有的后来考上了大学，有的成为了各行各业的佼佼者。每当他们回来看我，告诉我他们的成就时，我的心里总是充满了自豪和欣慰。</p>
+        
+        <p>记得有一个学生，家里特别困难，连学费都交不起。我主动帮他垫付了学费，还经常给他带些吃的。这个学生后来考上了师范大学，毕业后也成了一名教师。他经常对我说：'老师，是您改变了我的人生。'</p>
+        
+        
+        
+    </section>
+    
+    <section id="chapter-3" class="chapter chapter-3">
+        <h2 id="chapter-3-title">为家奔波与安居的喜悦 (1976-1995)</h2>
+        
+        
+        <p>1976年，我和妻子结婚了。婚后，我们住在生产队分配的两间破旧的小屋里，那是用泥土筑成的房子，一到雨天就漏水。</p>
+        
+        <p>为了改善居住条件，我开始利用课余时间做些小买卖，帮人修理自行车，做些木工活。每一分钱都存起来，为了将来能盖一所属于自己的房子。</p>
+        
+        
+        
+    </section>
+    
+    <section id="chapter-4" class="chapter chapter-4">
+        <h2 id="chapter-4-title">食堂烟火里的十八年 (1991-2008)</h2>
+        
+        
+        <p>1991年，因为学校需要，我被调去管理学校食堂。从讲台走向灶台，这个转变对我来说并不容易。</p>
+        
+        <p>但我告诉自己，无论做什么工作，都要做到最好。我学习烹饪技术，精心计算成本，确保师生们能吃得好、吃得健康。</p>
+        
+        
+        
+    </section>
+    
+    <section id="chapter-5" class="chapter chapter-5">
+        <h2 id="chapter-5-title">天伦之乐与手足情深 (1995-2021)</h2>
+        
+        
+        <p>随着孩子们长大成人，我和妻子的生活逐渐安定下来。孙辈的出生，更是给我们的生活带来了无尽的欢乐。</p>
+        
+        <p>兄弟姐妹们虽然各自成家，但我们的感情却从未疏远。每逢节假日，大家都会聚在一起，回忆往事，共话家常。</p>
+        
+        
+        
+    </section>
+    
+    <section id="chapter-6" class="chapter chapter-6">
+        <h2 id="chapter-6-title">暮年的考验与生命的坚韧 (2021-至今)</h2>
+        
+        
+        <p>2021年，一场突如其来的疾病打破了我平静的晚年生活。医生说我得了脑梗，需要长期治疗和康复。</p>
+        
+        <p>面对病痛，我没有放弃。在家人的陪伴和鼓励下，我坚持康复训练，一点一点地恢复着身体机能。虽然行动不如从前，但我依然保持着乐观的心态，珍惜每一天的生活。</p>
+        
+        
+        
+    </section>
+    
+    
+    <!-- 荣誉证书部分 -->
+    <!-- 已移除荣誉证书部分 -->
+    
+    <!-- 版权页 -->
+    <section class="copyright">
+        <p>本书仅供展示，未经许可不得复制或使用</p>
+        <p>整理：小鹿光年回忆录 整理</p>
+        <p>联系方式：deerlight_ai@163.com</p>
+        <p>电话：15301635715</p>
+    </section>
+</body>
+</html>

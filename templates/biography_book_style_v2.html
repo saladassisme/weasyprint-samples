@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="{{ book_info.author }}">
+    <title>{{ book_info.title }}</title>
+    <link href="../book/book.css" rel="stylesheet">
+    <style>
+        /* 中文适配样式 - 最小化覆盖，保持book.css的核心样式 */
+        html {
+            font-family: "Microsoft YaHei", "SimSun", serif;
+            font-size: 10pt;
+        }
+        
+        /* 保持book.css的h2样式，只调整字体 */
+        h2 {
+            font-family: "Microsoft YaHei", "SimSun", serif;
+        }
+        
+        /* 中文段落样式 */
+        p {
+            line-height: 2;
+            text-align: justify;
+            text-indent: 2em;
+        }
+        
+        /* 封面页 - 使用book.css的full页面样式 */
+        .cover-page {
+            page: full;
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2cm;
+        }
+        
+        .cover-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 1em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .cover-subtitle {
+            font-size: 1.5em;
+            margin-bottom: 2em;
+            opacity: 0.9;
+        }
+        
+        .cover-author {
+            font-size: 1.8em;
+            margin-bottom: 1em;
+        }
+        
+        .cover-compiler {
+            font-size: 1.2em;
+            margin-bottom: 3em;
+            opacity: 0.8;
+        }
+        
+        .cover-contact {
+            font-size: 1em;
+            opacity: 0.7;
+        }
+        
+        /* 作者信息页 - 使用clean页面样式 */
+        .author-info {
+            page: clean;
+            text-align: center;
+            padding: 3cm 2cm;
+            background: white;
+            color: black;
+        }
+        
+        .author-info h3 {
+            font-size: 2em;
+            margin-bottom: 2em;
+            color: #333;
+        }
+        
+        .author-info p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            text-indent: 0;
+            margin: 1em 0;
+            color: #555;
+        }
+        
+        /* 目录页 - 使用clean页面样式 */
+        .contents {
+            page: clean;
+            padding: 2cm;
+            background: white;
+            color: black;
+        }
+        
+        .contents h3 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 2em;
+            color: #333;
+        }
+        
+        .contents ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .contents li {
+            margin: 1.5em 0;
+            font-size: 1.1em;
+        }
+        
+        .contents a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 0.5em 0;
+        }
+        
+        .contents a::after {
+            content: target-counter(attr(href), page);
+            float: right;
+            color: #666;
+        }
+        
+        /* 章节样式 - 完全使用book.css的chapitre样式 */
+        .chapter {
+            break-after: right;
+            position: relative;
+        }
+        
+        /* 为不同章节设置不同的背景图片 */
+        .chapter-1::before { background-image: url("../book/img/couv1.jpg"); }
+        .chapter-2::before { background-image: url("../book/img/couv2.jpg"); }
+        .chapter-3::before { background-image: url("../book/img/couv3.jpg"); }
+        .chapter-4::before { background-image: url("../book/img/couv4.jpg"); }
+        .chapter-5::before { background-image: url("../book/img/couv1.jpg"); }
+        .chapter-6::before { background-image: url("../book/img/couv2.jpg"); }
+        
+        /* 荣誉证书部分 - 使用clean页面样式 */
+        .honor-section {
+            page: clean;
+            padding: 2cm;
+            background: white;
+            color: black;
+        }
+        
+        .honor-section h3 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 2em;
+            color: #333;
+        }
+        
+        .honor-item {
+            margin: 2em 0;
+            padding: 1em;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        
+        .honor-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5em;
+        }
+        
+        .honor-issuer {
+            color: #7f8c8d;
+            font-size: 1em;
+            margin-bottom: 0.3em;
+        }
+        
+        .honor-date {
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+        
+        .honor-description {
+            margin-top: 0.5em;
+            font-size: 1em;
+            line-height: 1.5;
+            text-indent: 0;
+        }
+        
+        /* 版权信息 - 使用clean页面样式 */
+        .copyright {
+            page: clean;
+            text-align: center;
+            padding: 3cm 2cm;
+            background: white;
+            color: #666;
+        }
+        
+        .copyright p {
+            font-size: 1em;
+            text-indent: 0;
+            margin: 1em 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ book_info.title }}</h1>
+    
+    <!-- 封面页 -->
+    <section class="cover-page">
+        <div class="cover-title">{{ book_info.title }}</div>
+        <div class="cover-subtitle">回忆录</div>
+        <div class="cover-author">{{ book_info.author }}</div>
+        <div class="cover-compiler">{{ book_info.compiler }}</div>
+        <div class="cover-contact">
+            <p>{{ book_info.contact.email }}</p>
+            <p>{{ book_info.contact.phone }}</p>
+        </div>
+    </section>
+    
+    <!-- 作者信息页 -->
+    <section class="author-info">
+        <h3>关于作者</h3>
+        <p>{{ book_info.author }}，生于1948年5月，松江华阳桥长楼村人。</p>
+        <p>一生从事教育工作，从民办教师到食堂管理，见证了时代变迁。</p>
+        <p>虽历经坎坷，但始终保持乐观坚韧的人生态度。</p>
+        <p>本书记录了他从童年到暮年的人生历程，展现了一个普通人的不凡人生。</p>
+    </section>
+    
+    <!-- 目录页 -->
+    <section class="contents">
+        <h3>目录</h3>
+        <ul>
+            {% for item in table_of_contents %}
+            <li><a href="#chapter-{{ loop.index }}-title">{{ item.chapter }} {{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+    
+    <!-- 各章节内容 - 使用book.css的chapitre样式 -->
+    {% for chapter in chapters %}
+    <section id="chapter-{{ chapter.id }}" class="chapter chapter-{{ chapter.id }}">
+        <h2 id="chapter-{{ chapter.id }}-title">{{ chapter.title }}</h2>
+        
+        {% for paragraph in chapter.content %}
+        <p>{{ paragraph }}</p>
+        {% endfor %}
+        
+        {% if chapter.images %}
+        {% for image in chapter.images %}
+        <aside>
+            <figure>
+                <img src="{{ image.url }}" alt="{{ image.alt }}">
+                <figcaption>{{ image.caption }}</figcaption>
+            </figure>
+        </aside>
+        {% endfor %}
+        {% endif %}
+    </section>
+    {% endfor %}
+    
+    <!-- 荣誉证书部分 -->
+    {% if honor_certificates %}
+    <section class="honor-section">
+        <h3>荣誉证书</h3>
+        {% for cert in honor_certificates %}
+        <div class="honor-item">
+            <div class="honor-title">{{ cert.title }}</div>
+            <div class="honor-issuer">颁发单位：{{ cert.issuer }}</div>
+            <div class="honor-date">颁发日期：{{ cert.date }}</div>
+            <div class="honor-description">{{ cert.description }}</div>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+    
+    <!-- 版权页 -->
+    <section class="copyright">
+        <p>{{ book_info.copyright }}</p>
+        <p>整理：{{ book_info.compiler }}</p>
+        <p>联系方式：{{ book_info.contact.email }}</p>
+        <p>电话：{{ book_info.contact.phone }}</p>
+    </section>
+</body>
+</html>
