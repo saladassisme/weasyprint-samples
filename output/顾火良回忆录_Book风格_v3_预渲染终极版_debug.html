@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="{{ book_info.author }}">
-    <title>{{ book_info.title }}</title>
+    <meta name="author" content="顾火良">
+    <title>顾火良回忆录</title>
     <style>
         /* 自定义字体定义 */
         @font-face {
@@ -465,21 +465,21 @@
     </style>
 </head>
 <body>
-    <h1>{{ book_info.title }}</h1>
+    <h1>顾火良回忆录</h1>
     
     <!-- 水印 -->
-    <div class="watermark">{{ book_info.compiler }}</div>
+    <div class="watermark">小鹿光年整理制作</div>
     
     <!-- 封面页 -->
     <section class="cover-page">
-        <div class="cover-title">{{ book_info.title }}</div>
-        <div class="cover-author">作者 {{ book_info.author }}</div>
+        <div class="cover-title">顾火良回忆录</div>
+        <div class="cover-author">作者 顾火良</div>
     </section>
     
     <!-- 作者信息页 -->
     <section class="author-info">
         <h3>关于作者</h3>
-        <p>{{ book_info.author }}，生于1948年5月，松江华阳桥长楼村人。</p>
+        <p>顾火良，生于1948年5月，松江华阳桥长楼村人。</p>
         <p>一生从事教育工作，从民办教师到食堂管理，见证了时代变迁。</p>
         <p>虽历经坎坷，但始终保持乐观坚韧的人生态度。</p>
         <p>本书记录了他从童年到暮年的人生历程，展现了一个普通人的不凡人生。</p>
@@ -489,49 +489,242 @@
     <section class="contents">
         <h3>目录</h3>
         <ul>
-            {% for chapter in chapters %}
-            <li><a href="#chapter-{{ chapter.id }}-title" data-page="{{ chapter.page }}">第{{ chapter.id }}篇 {{ chapter.title }}</a></li>
-            {% endfor %}
+            
+            <li><a href="#chapter-1-title" data-page="7">第1篇 贫瘠土地上的童年</a></li>
+            
+            <li><a href="#chapter-2-title" data-page="17">第2篇 从田埂走向讲台</a></li>
+            
+            <li><a href="#chapter-3-title" data-page="21">第3篇 为家奔波与安居的喜悦</a></li>
+            
+            <li><a href="#chapter-4-title" data-page="23">第4篇 食堂烟火里的十八年</a></li>
+            
+            <li><a href="#chapter-5-title" data-page="25">第5篇 天伦之乐与手足情深</a></li>
+            
+            <li><a href="#chapter-6-title" data-page="27">第6篇 暮年考验与生命坚韧</a></li>
+            
         </ul>
     </section>
     
     <!-- 各章节内容 -->
-    {% for chapter in chapters %}
+    
     <!-- 章节图片页（偶数页，翻开后的左页） -->
     <section class="chapter-image-page">
         <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
     </section>
     
     <!-- 章节内容页（奇数页，翻开后的右页） -->
-    <section id="chapter-{{ chapter.id }}" class="chapter chapter-{{ chapter.id }} chapter-content-page">
-        <h2 id="chapter-{{ chapter.id }}-title">{{ chapter.title }}</h2>
+    <section id="chapter-1" class="chapter chapter-1 chapter-content-page">
+        <h2 id="chapter-1-title">贫瘠土地上的童年</h2>
         
         <!-- 二维码区域 -->
         <div class="chapter-qr">
-            {% if chapter.qr_code %}
-            <img src="{{ chapter.qr_code }}" alt="{{ chapter.title }}二维码">
-            {% else %}
-            <img src="qrcode.jpg" alt="{{ chapter.title }}二维码">
-            {% endif %}
+            
+            <img src="qrcode.jpg" alt="贫瘠土地上的童年二维码">
+            
             <div class="chapter-qr-label">扫码听故事</div>
         </div>
         
-        {% for paragraph in chapter.content %}
-        <p>{{ paragraph }}</p>
-        {% endfor %}
         
-        {% if chapter.images %}
-        {% for image in chapter.images %}
-        <aside>
-            <figure>
-                <img src="{{ image.url }}" alt="{{ image.alt }}">
-                <figcaption>{{ image.caption }}</figcaption>
-            </figure>
-        </aside>
-        {% endfor %}
-        {% endif %}
+        <p>我的故事，开始于1948年5月。那是一个春末夏初的季节，我出生在松江华阳桥的长楼村，七家浜生产队。我的家，就像那个年代大多数农村家庭一样，被贫穷的阴影笼罩着。</p>
+        
+        <p>父母一共养育了我们七个兄妹，在那个物质极度匮乏的年代，仅靠父母在生产队挣的工分，要养活一大家子人，其艰难程度可想而知。</p>
+        
+        <p>因为穷，我错过了正常的入学年龄。直到1958年，我已经十岁了，才第一次踏进学校的大门。那时的我，看着比我小两三岁的同学，心里既羡慕又自卑。</p>
+        
+        <p>记得第一次走进教室的时候，我穿着补丁摞补丁的衣服，脚上是一双破旧的布鞋。同学们都用好奇的眼光看着我，有的甚至窃窃私语。我知道他们在议论什么，但我只能默默地走到最后一排，坐在那个最角落的位置。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>老师是一位和蔼的中年妇女，她看出了我的窘迫，特意走到我身边，轻声对我说：'孩子，不要怕，好好学习，知识能改变命运。'这句话，像一束光，照亮了我内心深处的黑暗。</p>
+        
+        <p>从那时起，我下定决心要好好学习。每天天不亮就起床，借着微弱的煤油灯光读书写字。虽然条件艰苦，但我从未放弃过。我知道，只有通过知识，才能改变我们家的命运。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        <p>在学校里，我如饥似渴地学习着每一个字，每一道题。虽然起步比别人晚，但我相信勤能补拙。渐渐地，我的成绩开始有了起色，老师也开始注意到这个勤奋的学生。</p>
+        
+        
+        
     </section>
-    {% endfor %}
+    
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-2" class="chapter chapter-2 chapter-content-page">
+        <h2 id="chapter-2-title">从田埂走向讲台</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="qrcode.jpg" alt="从田埂走向讲台二维码">
+            
+            <div class="chapter-qr-label">扫码听故事</div>
+        </div>
+        
+        
+        <p>生活似乎在一点点地向我展露微笑。我们生产队有一所耕读小学，教书的老师是一位女同志，她因为要经常回男家，便时常叫我去代课。</p>
+        
+        <p>1972年，国家进行教育政策调整，有了"公专公调"的规定。然而，因为我所在的耕读学校性质特殊，并没有被转为公办学校，我的身份也由此定格为一名"民办教师"。</p>
+        
+        <p>虽然只是民办教师，但我依然热爱这份工作。每天清晨，我都会早早地来到学校，打扫教室，准备教案。看着孩子们一张张纯真的笑脸，听着他们朗朗的读书声，我觉得这就是我人生最大的幸福。</p>
+        
+        <p>在那个年代，民办教师的待遇并不好，每个月只有几块钱的工资，还要自己种地维持生计。但我从未抱怨过，因为我知道，教育是改变命运的唯一途径。</p>
+        
+        <p>我教过的学生中，有的后来考上了大学，有的成为了各行各业的佼佼者。每当他们回来看我，告诉我他们的成就时，我的心里总是充满了自豪和欣慰。</p>
+        
+        <p>记得有一个学生，家里特别困难，连学费都交不起。我主动帮他垫付了学费，还经常给他带些吃的。这个学生后来考上了师范大学，毕业后也成了一名教师。他经常对我说：'老师，是您改变了我的人生。'</p>
+        
+        
+        
+    </section>
+    
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-3" class="chapter chapter-3 chapter-content-page">
+        <h2 id="chapter-3-title">为家奔波与安居的喜悦</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="qrcode.jpg" alt="为家奔波与安居的喜悦二维码">
+            
+            <div class="chapter-qr-label">扫码听故事</div>
+        </div>
+        
+        
+        <p>1976年，我和妻子结婚了。婚后，我们住在生产队分配的两间破旧的小屋里，那是用泥土筑成的房子，一到雨天就漏水。</p>
+        
+        <p>为了改善居住条件，我开始利用课余时间做些小买卖，帮人修理自行车，做些木工活。每一分钱都存起来，为了将来能盖一所属于自己的房子。</p>
+        
+        
+        
+    </section>
+    
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-4" class="chapter chapter-4 chapter-content-page">
+        <h2 id="chapter-4-title">食堂烟火里的十八年</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="qrcode.jpg" alt="食堂烟火里的十八年二维码">
+            
+            <div class="chapter-qr-label">扫码听故事</div>
+        </div>
+        
+        
+        <p>1991年，因为学校需要，我被调去管理学校食堂。从讲台走向灶台，这个转变对我来说并不容易。</p>
+        
+        <p>但我告诉自己，无论做什么工作，都要做到最好。我学习烹饪技术，精心计算成本，确保师生们能吃得好、吃得健康。</p>
+        
+        
+        
+    </section>
+    
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-5" class="chapter chapter-5 chapter-content-page">
+        <h2 id="chapter-5-title">天伦之乐与手足情深</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="qrcode.jpg" alt="天伦之乐与手足情深二维码">
+            
+            <div class="chapter-qr-label">扫码听故事</div>
+        </div>
+        
+        
+        <p>随着孩子们长大成人，我和妻子的生活逐渐安定下来。孙辈的出生，更是给我们的生活带来了无尽的欢乐。</p>
+        
+        <p>兄弟姐妹们虽然各自成家，但我们的感情却从未疏远。每逢节假日，大家都会聚在一起，回忆往事，共话家常。</p>
+        
+        
+        
+    </section>
+    
+    <!-- 章节图片页（偶数页，翻开后的左页） -->
+    <section class="chapter-image-page">
+        <img src="back_cover.jpg" alt="章节配图" class="chapter-image">
+    </section>
+    
+    <!-- 章节内容页（奇数页，翻开后的右页） -->
+    <section id="chapter-6" class="chapter chapter-6 chapter-content-page">
+        <h2 id="chapter-6-title">暮年考验与生命坚韧</h2>
+        
+        <!-- 二维码区域 -->
+        <div class="chapter-qr">
+            
+            <img src="qrcode.jpg" alt="暮年考验与生命坚韧二维码">
+            
+            <div class="chapter-qr-label">扫码听故事</div>
+        </div>
+        
+        
+        <p>2021年，一场突如其来的疾病打破了我平静的晚年生活。医生说我得了脑梗，需要长期治疗和康复。</p>
+        
+        <p>面对病痛，我没有放弃。在家人的陪伴和鼓励下，我坚持康复训练，一点一点地恢复着身体机能。虽然行动不如从前，但我依然保持着乐观的心态，珍惜每一天的生活。</p>
+        
+        <p>2021年，一场突如其来的疾病打破了我平静的晚年生活。医生说我得了脑梗，需要长期治疗和康复。</p>
+        
+        <p>面对病痛，我没有放弃。在家人的陪伴和鼓励下，我坚持康复训练，一点一点地恢复着身体机能。虽然行动不如从前，但我依然保持着乐观的心态，珍惜每一天的生活。</p>
+        
+        
+        
+    </section>
+    
     
     <!-- 荣誉证书部分 -->
     <!-- 已移除荣誉证书部分 -->
