@@ -11,6 +11,63 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 import pdfplumber
+import qrcode
+
+def generate_qr_code(url, filename):
+    """生成二维码图片"""
+    if not url or not url.strip():
+        return None
+    
+    try:
+        # 创建二维码实例
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        
+        # 添加数据
+        qr.add_data(url)
+        qr.make(fit=True)
+        
+        # 创建图片
+        img = qr.make_image(fill_color="black", back_color="white")
+        
+        # 保存图片
+        img.save(filename)
+        print(f"  二维码生成成功: {filename}")
+        return filename
+        
+    except Exception as e:
+        print(f"  二维码生成失败: {e}")
+        return None
+
+def generate_chapter_qr_codes(chapters):
+    """为所有章节生成二维码"""
+    print("\n[1.5/3] 生成章节二维码...")
+    
+    # 创建二维码目录
+    qr_dir = Path("qr_codes")
+    qr_dir.mkdir(exist_ok=True)
+    
+    for chapter in chapters:
+        if 'qr_link' in chapter and chapter['qr_link']:
+            qr_filename = qr_dir / f"chapter_{chapter['id']}_qr.png"
+            generated_qr = generate_qr_code(chapter['qr_link'], str(qr_filename))
+            
+            if generated_qr:
+                # 更新章节数据，添加生成的二维码路径
+                chapter['qr_code'] = str(qr_filename)
+            else:
+                # 如果生成失败，使用默认二维码
+                chapter['qr_code'] = "qrcode.jpg"
+        else:
+            # 如果没有链接，使用默认二维码
+            chapter['qr_code'] = "qrcode.jpg"
+    
+    print("章节二维码生成完成")
+
 
 def create_pre_render_template():
     """创建预渲染模板（无目录，带页码标记）"""
@@ -572,6 +629,7 @@ def generate_book_style_pdf_pre_render():
             book_data = json.load(f)
         print(f"成功读取数据：{book_data['book_info']['title']}")
         
+        generate_chapter_qr_codes(book_data['chapters'])
         # 显示目录信息
         print("\n目录信息：")
         for chapter in book_data['chapters']:
@@ -668,25 +726,8 @@ def main():
     success = generate_book_style_pdf_pre_render()
     
     if success:
-        print("\n预渲染分页计算方案特色功能：")
-        print("- 第一次渲染：生成带页码标记的PDF")
-        print("- PDF解析：使用pdfplumber提取真实页码")
-        print("- 第二次渲染：生成包含准确目录的最终PDF")
-        print("- 页码精度：100%准确，适应复杂排版")
-        print("- 支持动态内容：不规则插图、变长文本等")
+        print("\n结束处理")
         
-        print("\n技术优势：")
-        print("1. 预渲染获取真实页码")
-        print("2. pdfplumber解析PDF文本")
-        print("3. 动态生成目录HTML")
-        print("4. 适应超复杂排版场景")
-        print("5. 页码精度达到100%")
-        
-        print("\n下一步建议：")
-        print("1. 打开生成的 PDF 查看效果")
-        print("2. 检查目录页码是否完全准确")
-        print("3. 如需调整样式，编辑 templates/biography_book_style_v3.html")
-        print("4. 如需修改内容，编辑 biography_data.json")
     else:
         print("\n生成失败，请检查错误信息")
 
