@@ -1,0 +1,36 @@
+/* 自定义字体示例 - 添加到CSS的顶部 */
+
+/* 定义自定义字体 */
+@font-face {
+    font-family: 'CustomTitle';
+    src: url('fonts/your-title-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CustomBody';
+    src: url('fonts/your-body-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CustomKai';
+    src: url('fonts/your-kai-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 然后在样式中使用这些字体 */
+.cover-title {
+    font-family: 'CustomTitle', "STKaiti", "KaiTi", "楷体", serif;
+}
+
+p {
+    font-family: 'CustomBody', "SimSun", "宋体", "NSimSun", serif;
+}
+
+.contents a {
+    font-family: 'CustomKai', "KaiTi", "楷体", "STKaiti", serif;
+}
