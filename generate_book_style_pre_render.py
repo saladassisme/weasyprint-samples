@@ -597,7 +597,7 @@ def extract_page_numbers_from_pdf(pdf_path):
         print(f"  警告：解析PDF时出错: {e}")
         # 使用估算值作为备选
         for i in range(1, 7):  # 假设有6章
-            chapter_pages[i] = 3 + (i - 1) * 2 + 1
+            chapter_pages[i] = 1 + (i - 1) * 2 + 1
     
     return chapter_pages
 
@@ -609,10 +609,10 @@ def generate_book_style_pdf_pre_render():
     print("=" * 60)
     
     # 配置文件路径
-    JSON_PATH = "biography_data.json"
+    JSON_PATH = "new-instance.json"
     TEMPLATE_PATH = "templates/biography_book_style_v3.html"
-    PRE_RENDER_PDF_PATH = "output/顾火良回忆录_预渲染版.pdf"
-    OUTPUT_PDF_PATH = "output/顾火良回忆录_Book风格_v3_预渲染终极版.pdf"
+    PRE_RENDER_PDF_PATH = "output/new回忆录_预渲染版.pdf"
+    OUTPUT_PDF_PATH = "output/new回忆录_Book风格_v3_预渲染终极版.pdf"
     
     # 创建输出目录
     output_dir = Path("output")
